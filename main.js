@@ -12,7 +12,14 @@ function loadCSV() {
     input.accept = '.csv';
     
     input.onchange = e => {
-      const file = e.target.files[0];
+      handlefile(e.target.files[0])
+    };
+    
+    input.click();
+  }
+  
+function handlefile(filehandle){
+      const file = filehandle;
       const reader = new FileReader();
       
       reader.onload = event => {
@@ -27,11 +34,8 @@ function loadCSV() {
       };
       
       reader.readAsText(file);
-    };
-    
-    input.click();
-  }
-  
+}
+
   function parseCSV(csvContent) {
     csvContent = replaceAll(csvContent, '\"', "")
     const lines = csvContent.split('\n');
@@ -205,6 +209,9 @@ function loadCSV() {
     window.print();
   }
 
+
+//===PWA Stuff====
+
   //enable serviceworker
   if("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
@@ -218,3 +225,17 @@ function loadCSV() {
       );
     });
   }
+
+if ('launchQueue' in window) {
+    console.log('File Handling API is supported!');
+    launchQueue.setConsumer(launchParams => {
+        handleFiles(launchParams.files);
+    });
+}
+
+async function handleFiles(files) {
+    for (const file of files) {
+        handlefile(await file.getFile());
+    }
+    doprint();
+}

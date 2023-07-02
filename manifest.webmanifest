@@ -28,5 +28,15 @@
             "sizes": "512x512",
             "type": "image/png"
         }
+    ],
+    "file_handlers": [
+        {
+            "action": "/index.html#openFiel",
+            "accept": {
+                "text/*": [
+                    ".csv"
+                ]
+            }
+        }
     ]
 }

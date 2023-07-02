@@ -42,24 +42,39 @@ h2{
     text-align: center;
 }
 
+.waiting{
+    padding-bottom: 40px;
+}
+
 @media print {
     .noPrint {
         display:none;
       }
 
     h2{
-        font-size: 16px;
+        font-size: 15px;
         font-weight: bold;
         text-align: left;
     }
 
     body{
         font-family: sans;
+        font-size: 14px;
     }
 
     .reservtable tbody tr:nth-child(even),
     .reservtable thead tr{
         background-color: #e7e7e7!important;
+    }
+
+    .reservtable .bdate{
+        min-width: 110px;
+    }
+    
+
+    .reservtable tr td,
+    .reservtable tr th{
+        padding: 1px;
     }
 
     .reservtable{
@@ -68,13 +83,16 @@ h2{
 
     #info{
         position: absolute;
-        bottom: 0px;
+        top: 0px;
         right: 0px;
         margin: 8px;
-        color: gray;
-        font-size: 15px;
+        opacity: 0.7;
+        font-size: 13px;
         text-align: right;
         display: block !important;
+    }
+    .waiting{
+        padding-bottom: 0px;
     }
 }
 
