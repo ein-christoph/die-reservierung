@@ -20,7 +20,7 @@ function loadCSV() {
         parseCSV(contents);
         document.getElementById("begin").style.display = "none";
         document.getElementById("edit").style.display = "block";
-        document.getElementById("info").innerHTML = "DIE RESERVIERUNG stand "+formatDateString("");
+        document.getElementById("info").innerHTML = "Stand "+formatDateString("");
         document.getElementById("fileopen").classList.remove("btn-primary");
         document.getElementById("fileopen").classList.add("btn-default");
         document.getElementById("print").style.display = "inline-block";

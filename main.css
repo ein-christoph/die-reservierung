@@ -34,6 +34,10 @@ html, body{
     width: 300px;
 }
 
+.reservtable .bdate{
+    min-width: 150px;
+}
+
 h2{
     text-align: center;
 }
@@ -46,6 +50,7 @@ h2{
     h2{
         font-size: 16px;
         font-weight: bold;
+        text-align: left;
     }
 
     body{
@@ -56,15 +61,25 @@ h2{
     .reservtable thead tr{
         background-color: #e7e7e7!important;
     }
+
+    .reservtable{
+        margin: 0px auto 0px 0px;
+    }
+
+    #info{
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        margin: 8px;
+        color: gray;
+        font-size: 15px;
+        text-align: right;
+        display: block !important;
+    }
 }
 
 #info{
-    color: gray;
-    font-size: 15px;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    margin: 8px;
+    display: none;
 }
 
 .navbar .glyphicon{
