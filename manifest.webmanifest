@@ -1,6 +1,6 @@
 {
-    "theme_color": "#35b7f6",
-    "background_color": "#4035f6",
+    "theme_color": "#404040",
+    "background_color": "#404040",
     "display": "standalone",
     "scope": "/die-reservierung/",
     "start_url": "/die-reservierung/index.html",
