@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DIE RESERVIERUNG</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
+  <script src="./jquerry/jquerry.js"></script>
+  <link rel="stylesheet" href="main.css">
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" href="./icon-192x192.png">
+</head>
+
+<body>
+  <nav class="navbar navbar-default noPrint">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">DIE RESERVIERUNG</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <button id="fileopen" type="button" onclick="loadCSV()" class="btn btn-primary" aria-label="Left Align">
+                <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>Datei öffnen
+              </button>
+              <button id="print" type="button" onclick="doprint()" class="btn btn-primary" style="display: none;"
+                aria-label="Left Align">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>Drucken</a>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="begin">
+    <div class="alert alert-info" role="alert">
+      <strong>Keine Daten verfügbar</strong><br />Bitte öffne eine Events Made Easy CSV-Datei über den Menüpunkt "Datei
+      öffnen".
+    </div>
+  </div>
+  <div id="edit">
+    <h2>Bestätigte Reservierungen</h2>
+    <table id="bookingTable" class="reservtable">
+      <thead>
+        <tr>
+          <th class="nn">Nachname</th>
+          <th class="vn">Vorname</th>
+          <th class="pl">Plätze</th>
+          <th class="komm">Kommentare</th>
+        </tr>
+      </thead>
+      <tbody id="bookingData"></tbody>
+    </table>
+
+    <div class="waiting">
+      <h2>Wartelistenplätze</h2>
+      <table id="waitingListTable" class="reservtable">
+        <thead>
+          <tr>
+            <th>Nr.</th>
+            <th class="nn">Nachname</th>
+            <th class="vn">Vorname</th>
+            <th>Buchungsdatum</th>
+            <th class="pl">Plätze</th>
+            <th class="komm">Kommentare</th>
+          </tr>
+        </thead>
+        <tbody id="waitingListData"></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="info"></div>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="./bootstrap/js/bootstrap.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

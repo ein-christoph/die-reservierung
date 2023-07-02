@@ -1,0 +1,76 @@
+html, body{
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+    font-family: sans-serif;
+}
+
+.reservtable{
+    margin: auto;
+}
+
+.reservtable tr td,
+.reservtable tr th{
+    padding: 3px;
+}
+
+.reservtable tbody tr:nth-child(even),
+.reservtable thead tr{
+    background-color: #e7e7e7;
+}
+
+.reservtable .vn{
+    min-width: 150px;
+}
+
+.reservtable .pl{
+    width: 100px;
+    text-align: center;
+}
+
+.reservtable .komm{
+    width: 300px;
+}
+
+h2{
+    text-align: center;
+}
+
+@media print {
+    .noPrint {
+        display:none;
+      }
+
+    h2{
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    body{
+        font-family: sans;
+    }
+
+    .reservtable tbody tr:nth-child(even),
+    .reservtable thead tr{
+        background-color: #e7e7e7!important;
+    }
+}
+
+#info{
+    color: gray;
+    font-size: 15px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 8px;
+}
+
+.navbar .glyphicon{
+    padding: 0px 6px 0px 0px;
+}
+
+#edit{
+    display: none;
+}
