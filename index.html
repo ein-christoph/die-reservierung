@@ -42,6 +42,9 @@
                 aria-label="Left Align">
                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>Drucken</a>
               </button>
+              <button id="fileopen" type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#aboutModal">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Info
+              </button>
             </div>
           </form>
         </div>
@@ -86,6 +89,31 @@
       </table>
     </div>
     <div id="info"></div>
+  </div>
+
+
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Information</h4>
+        </div>
+        <div class="modal-body">
+          <p>Diese Webanwendung dient dazu Events Made Easy CSV-Reservierungsdateien formatiert zu drucken.</p>
+          <p>Dabei werden Wartelistenplätze in einer extra Taballe nach dem Buchungsdatum sortiert.<br />
+          Die Anwendung kann auch als Standard Filehandler gesetzt werden wordurch direkt beim Öffnen von CSV-Dateien die Datei gedruckt wird</p>
+          <p>JS-Version: <span id="jsversion"></span><br />CSS-Version:<span id="cssversion"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- Latest compiled and minified JavaScript -->

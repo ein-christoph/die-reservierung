@@ -1,3 +1,5 @@
+document.getElementById("jsversion").innerHTML = "0.0.1a";
+
 function error(text){
   console.error(text);
 }
