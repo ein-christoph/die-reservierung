@@ -31,7 +31,7 @@
     ],
     "file_handlers": [
         {
-            "action": "/index.html#openFiel",
+            "action": "/die-reservierung/index.html#openFiel",
             "accept": {
                 "text/*": [
                     ".csv"
