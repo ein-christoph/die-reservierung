@@ -239,5 +239,4 @@ async function handleFiles(files) {
     for (const file of files) {
         handlefile(await file.getFile());
     }
-    doprint();
 }
