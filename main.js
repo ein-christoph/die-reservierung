@@ -1,4 +1,4 @@
-document.getElementById("jsversion").innerHTML = "0.0.1a";
+document.getElementById("jsversion").innerHTML = "0.0.1b";
 
 function error(text){
   console.error(text);
@@ -71,7 +71,7 @@ function handlefile(filehandle){
       if(lines[i] == "") continue;
       const values = lines[i].split(';');
     
-      if (values[placesIndex].endsWith('(Warteliste)')) {
+      if (typeof values[placesIndex] !== 'undefined' && values[placesIndex].endsWith('(Warteliste)')) {
         waitingList.push({
           lastName: values[lastNameIndex],
           firstName: values[firstNameIndex],
