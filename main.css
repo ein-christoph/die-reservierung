@@ -111,3 +111,7 @@ h2{
 #edit{
     display: none;
 }
+
+#errors, #warnings{
+    display: none;
+}

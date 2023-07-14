@@ -42,7 +42,8 @@
                 aria-label="Left Align">
                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>Drucken</a>
               </button>
-              <button id="fileopen" type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#aboutModal">
+              <button id="fileopen" type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal"
+                data-target="#aboutModal">
                 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Info
               </button>
             </div>
@@ -56,6 +57,14 @@
     <div class="alert alert-info" role="alert">
       <strong>Keine Daten verfügbar</strong><br />Bitte öffne eine Events Made Easy CSV-Datei über den Menüpunkt "Datei
       öffnen".
+    </div>
+  </div>
+  <div class="hints noPrint">
+    <div id="errors" class="alert alert-danger" role="alert">
+      <strong>Fehler!</strong><br /><div id="inserrors">Test</div>
+    </div>
+    <div id="warnings" class="alert alert-warning" role="warning">
+      <strong>Warnung:</strong><br /><div id="inswarnings">Test</div>
     </div>
   </div>
   <div id="edit">
@@ -105,7 +114,8 @@
         <div class="modal-body">
           <p>Diese Webanwendung dient dazu Events Made Easy CSV-Reservierungsdateien formatiert zu drucken.</p>
           <p>Dabei werden Wartelistenplätze in einer extra Taballe nach dem Buchungsdatum sortiert.<br />
-          Die Anwendung kann auch als Standard Filehandler gesetzt werden wordurch direkt beim Öffnen von CSV-Dateien die Datei gedruckt wird</p>
+            Die Anwendung kann auch als Standard Filehandler gesetzt werden wordurch direkt beim Öffnen von CSV-Dateien
+            die Datei gedruckt wird</p>
           <p>JS-Version: <span id="jsversion"></span><br />CSS-Version:<span id="cssversion"></span></p>
         </div>
         <div class="modal-footer">
