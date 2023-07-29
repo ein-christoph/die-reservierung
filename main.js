@@ -1,4 +1,5 @@
-document.getElementById("jsversion").innerHTML = "0.0.1b";
+document.getElementById("jsversion").innerHTML = "0.0.2a";
+const _cardtypes = 5;
 
 function UIerror(text, uiout = "") {
   if (uiout == "") uiout = text;
@@ -55,6 +56,7 @@ function handlefile(filehandle) {
     document.getElementById("fileopen").classList.remove("btn-primary");
     document.getElementById("fileopen").classList.add("btn-default");
     document.getElementById("print").style.display = "inline-block";
+    document.getElementById("showtype").style.display = "inline-block";
   };
 
   reader.readAsText(file);
@@ -128,11 +130,30 @@ function parseCSV(csvContent) {
   }
 }
 
+function cardcountrow(columncount, cardcountcell, cardcount, table){
+  const row = document.createElement('tr');
+  row.classList.add("cardcountrow");
+  for(let i = 0; i < columncount; i++){
+    const Cell = document.createElement('td');
+    if(i == cardcountcell - 1){
+      Cell.innerHTML = cardcount;
+      Cell.classList.add("pl");
+    }
+    if(i >= cardcountcell && i <= cardcountcell + _cardtypes){
+      Cell.classList.add("type");
+    }
+    row.appendChild(Cell);
+  }
+  table.appendChild(row);
+}
+
 function displayBookings(bookings) {
   const bookingDataElement = document.getElementById('bookingData');
   bookingDataElement.innerHTML = '';
 
   bookings.sort((a, b) => a.lastName.localeCompare(b.lastName));
+
+  let cardcount = 0;
 
   for (const booking of bookings) {
     const row = document.createElement('tr');
@@ -149,13 +170,23 @@ function displayBookings(bookings) {
     placesCell.textContent = booking.places;
     placesCell.classList.add("pl");
     row.appendChild(placesCell);
+    cardcount += Number(booking.places);
+
+    for(let i = 0; i < _cardtypes; i++){
+      const placesCell = document.createElement('td');
+      placesCell.classList.add("type");
+      row.appendChild(placesCell);
+    }
 
     const commentaryCell = document.createElement('td');
     commentaryCell.textContent = booking.commentary;
+    commentaryCell.classList.add("komm");
     row.appendChild(commentaryCell);
 
     bookingDataElement.appendChild(row);
   }
+
+  cardcountrow(9, 3, cardcount, bookingDataElement);
 }
 
 function displayWaitingList(waitingList) {
@@ -174,6 +205,7 @@ function displayWaitingList(waitingList) {
   waitingList.sort((a, b) => a.bookingDate.localeCompare(b.bookingDate));
 
   let i = 1;
+  let cardcount = 0;
 
   for (const entry of waitingList) {
     const row = document.createElement('tr');
@@ -198,15 +230,24 @@ function displayWaitingList(waitingList) {
     placesCell.textContent = entry.places;
     placesCell.classList.add("pl");
     row.appendChild(placesCell);
+    cardcount += Number(entry.places);
+
+    for(let i = 0; i < _cardtypes; i++){
+      const placesCell = document.createElement('td');
+      placesCell.classList.add("type");
+      row.appendChild(placesCell);
+    }
 
     const commentaryCell = document.createElement('td');
     commentaryCell.textContent = entry.commentary;
+    commentaryCell.classList.add("komm");
     row.appendChild(commentaryCell);
 
     waitingListDataElement.appendChild(row);
 
     i++;
   }
+  cardcountrow(11, 5, cardcount, waitingListDataElement);
 }
 
 
@@ -244,6 +285,16 @@ function setdisplay(classname, display) {
 
 function doprint() {
   window.print();
+}
+
+function switchtypecolumn(elem){
+  if(elem.checked){
+    document.getElementById("waitingListTable").classList.add("showtypes");
+    document.getElementById("bookingTable").classList.add("showtypes");
+  }else{
+    document.getElementById("waitingListTable").classList.remove("showtypes");
+    document.getElementById("bookingTable").classList.remove("showtypes");
+  }
 }
 
 

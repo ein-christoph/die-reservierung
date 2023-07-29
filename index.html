@@ -35,12 +35,15 @@
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
             <div class="form-group">
-              <button id="fileopen" type="button" onclick="loadCSV()" class="btn btn-primary" aria-label="Left Align">
-                <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>Datei öffnen
-              </button>
+              <div class="checkbox" id="showtype" style="display: none;">
+                <label>Typspalten <input type="checkbox" value="" onchange="switchtypecolumn(this)"></label>
+              </div>
               <button id="print" type="button" onclick="doprint()" class="btn btn-primary" style="display: none;"
                 aria-label="Left Align">
                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>Drucken</a>
+              </button>
+              <button id="fileopen" type="button" onclick="loadCSV()" class="btn btn-primary" aria-label="Left Align">
+                <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>Datei öffnen
               </button>
               <button id="fileopen" type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal"
                 data-target="#aboutModal">
@@ -75,6 +78,11 @@
           <th class="nn">Nachname</th>
           <th class="vn">Vorname</th>
           <th class="pl">Plätze</th>
+          <th class="type showprint">Voll</th>
+          <th class="type showprint">Erm</th>
+          <th class="type showprint">Bühni</th>
+          <th class="type showprint">FreiK</th>
+          <th class="type showprint">2 in 1</th>
           <th class="komm">Kommentare</th>
         </tr>
       </thead>
@@ -91,6 +99,11 @@
             <th class="nn">Nachname</th>
             <th class="vn">Vorname</th>
             <th class="pl">Plätze</th>
+            <th class="type showprint">Voll</th>
+            <th class="type showprint">Erm</th>
+            <th class="type showprint">Bühni</th>
+            <th class="type showprint">FreiK</th>
+            <th class="type showprint">2 in 1</th>
             <th class="komm">Kommentare</th>
           </tr>
         </thead>

@@ -1,5 +1,5 @@
 #cssversion:before{
-    content: "0.0.1a";
+    content: "0.0.2a";
 }
 
 html, body{
@@ -50,7 +50,40 @@ h2{
     padding-bottom: 40px;
 }
 
+/*Falls aktiviert Spalten fÃ¼r den Kartentyp anzeigen*/
+#waitingListTable .type, .reservtable .type{
+    text-wrap: nowrap;
+    border-left: 1px solid gray;
+    width: 65px;
+    text-align: center;
+    display: none;
+}
+#waitingListTable .type:nth-child(9), #waitingListTable .type:nth-child(10), #bookingTable .type:nth-child(7),  #bookingTable .type:nth-child(8){
+    width: auto;
+}
+
+#waitingListTable.showtypes .type, #bookingTable.showtypes .type{
+    display: table-cell;
+}
+
+#waitingListTable.showtypes .komm, #bookingTable.showtypes .komm{
+    border-left: 1px solid gray;
+}
+
+#bookingTable.showtypes .pl, #waitingListTable.showtypes .pl, #bookingTable.showtypes .vn, #waitingListTable.showtypes .vn{
+    width: auto;
+    min-width: auto;
+}
+
+#waitingListTable .cardcountrow .pl, #bookingTable .cardcountrow .pl{
+    border-top: 3px double black;
+    font-weight: bold;
+}
+
+
+
 @media print {
+    
     .noPrint {
         display:none;
       }
