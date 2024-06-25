@@ -1,4 +1,4 @@
-document.getElementById("jsversion").innerHTML = "0.0.2a";
+document.getElementById("jsversion").innerHTML = "1.1.0a";
 const _cardtypes = 5;
 
 function UIerror(text, uiout = "") {
@@ -63,8 +63,7 @@ function handlefile(filehandle) {
 }
 
 function parseCSV(csvContent) {
-  csvContent = replaceAll(csvContent, '\"', "")
-  const lines = csvContent.split('\n');
+const lines = csvContent.split('"\n'); //split on evry ending "\n
 
   //Erste Zeile finden... die CSV ist manchmal sehr doof formatiert
   let headline = -1;
@@ -81,19 +80,23 @@ function parseCSV(csvContent) {
   }
 
   try {
-    const headers = lines[headline].split(';');
+    //remove leading "
+    lines[headline] = lines[headline].substring(1);
+    const headers = lines[headline].split('";"');
     const lastNameIndex = headers.indexOf('Nachname');
     const firstNameIndex = headers.indexOf('Vorname');
     const placesIndex = headers.indexOf('Plätze');
+    const statusIndex = headers.indexOf('Status');
     const bookingDateIndex = headers.indexOf('Buchungsdatum');
-    const commentaryIndex = headers.indexOf('Teilnehmerzahl');
+    const commentaryIndex = headers.indexOf('Kommentar');
 
     const bookings = [];
     const waitingList = [];
 
     for (let i = headline + 1; i < lines.length; i++) {
       if (lines[i] == "") continue;
-      const values = lines[i].split(';');
+      lines[i] = lines[i].substring(1);
+      const values = lines[i].split('";"');
 
       //offensichtliche Fehler prüfen
       //Kommentar kann leer sein
@@ -101,16 +104,17 @@ function parseCSV(csvContent) {
          || typeof values[firstNameIndex] == 'undefined' || values[firstNameIndex] == ""
          || typeof values[placesIndex] == 'undefined' || values[placesIndex] == ""
          || typeof values[bookingDateIndex] == 'undefined' || values[bookingDateIndex] == ""
-         || typeof values[commentaryIndex] == 'undefined'){
+         || typeof values[commentaryIndex] == 'undefined'
+         || typeof values[statusIndex] == 'undefined'){
           UIwarning("Emptyness error hit at i="+i, "Die geöffnete Datei enthält eine unerwartete Formatierung [1]. Bitte überprüfen Sie die Tabele auf Fehler und melden Sie dieses Verhalten dem Entwickler.")
          }
 
-      if (typeof values[placesIndex] !== 'undefined' && values[placesIndex].endsWith('(Warteliste)')) {
+      if (typeof values[statusIndex] !== 'undefined' && values[statusIndex] == 'Auf der Warteliste') {
         waitingList.push({
           lastName: values[lastNameIndex],
           firstName: values[firstNameIndex],
           bookingDate: formatDateString(values[bookingDateIndex]),
-          places: values[placesIndex].replace("(Warteliste)", ""),
+          places: values[placesIndex],
           commentary: values[commentaryIndex]
         });
       } else {
