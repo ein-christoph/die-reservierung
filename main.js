@@ -1,4 +1,4 @@
-document.getElementById("jsversion").innerHTML = "1.1.0a";
+document.getElementById("jsversion").innerHTML = "1.1.0b";
 const _cardtypes = 5;
 
 function UIerror(text, uiout = "") {
@@ -63,7 +63,14 @@ function handlefile(filehandle) {
 }
 
 function parseCSV(csvContent) {
-const lines = csvContent.split('"\n'); //split on evry ending "\n
+
+  let prg_lines = csvContent.split('"\n'); //split on evry ending "\n
+  if(prg_lines.length <= 1) // if we only have one line than try \r\n as split indicator
+    prg_lines = csvContent.split('"\r\n');
+  if(prg_lines.length <= 1) {
+    UIerror("Fehler beim Lesen der Datei! (Unbekannte Zeilentrennung!)");
+  }
+  const lines = prg_lines;
 
   //Erste Zeile finden... die CSV ist manchmal sehr doof formatiert
   let headline = -1;
@@ -82,7 +89,7 @@ const lines = csvContent.split('"\n'); //split on evry ending "\n
   try {
     //remove leading "
     lines[headline] = lines[headline].substring(1);
-    const headers = lines[headline].split('";"');
+    const headers = splitLineToCells(lines[headline]);
     const lastNameIndex = headers.indexOf('Nachname');
     const firstNameIndex = headers.indexOf('Vorname');
     const placesIndex = headers.indexOf('Plätze');
@@ -96,7 +103,7 @@ const lines = csvContent.split('"\n'); //split on evry ending "\n
     for (let i = headline + 1; i < lines.length; i++) {
       if (lines[i] == "") continue;
       lines[i] = lines[i].substring(1);
-      const values = lines[i].split('";"');
+      const values = splitLineToCells(lines[i]);
 
       //offensichtliche Fehler prüfen
       //Kommentar kann leer sein
@@ -132,6 +139,16 @@ const lines = csvContent.split('"\n'); //split on evry ending "\n
   } catch (error) {
     UIerror(error, "Die geöffnete Datei enthält eine unerwartete Formatierung [0]. Bitte überprüfen Sie die Tabele auf Fehler und melden Sie dieses Verhalten dem Entwickler.")
   }
+}
+
+function splitLineToCells(line){
+  let prg_array = line.split('";"'); // Try splitting at ";""
+  if(prg_array.length <= 1) // if that does not work try ","
+    prg_array = line.split('","');
+  if(prg_array.length <= 1) {
+    UIerror("Fehler beim Lesen der Datei! (Fehlerhaftes Trennzeichen!)");
+  }
+  return prg_array;
 }
 
 function cardcountrow(columncount, cardcountcell, cardcount, table){
