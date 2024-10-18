@@ -36,7 +36,7 @@
           <form class="navbar-form navbar-right">
             <div class="form-group">
               <div class="checkbox" id="showtype" style="display: none;">
-                <label>Typspalten <input type="checkbox" value="" onchange="switchtypecolumn(this)"></label>
+                <label>Typspalten <input type="checkbox" id="switchtypecolumn" value="" checked onchange="switchtypecolumn(this)"></label>
               </div>
               <button id="print" type="button" onclick="doprint()" class="btn btn-primary" style="display: none;"
                 aria-label="Left Align">
@@ -142,6 +142,10 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="./bootstrap/js/bootstrap.min.js"></script>
   <script src="main.js"></script>
+  <script>
+    //check for type column
+    switchtypecolumn(document.getElementById("switchtypecolumn"));
+  </script>
 </body>
 
 </html>
